@@ -44,3 +44,50 @@ fun DefaultPreview() {
         Greeting("Android")
     }
 }
+//@OptIn(ExperimentalPagerApi::class)
+//@Composable
+//private fun Sample() {
+//    Scaffold(
+//        topBar = {
+//            TopAppBar(
+//                title = { Text("banzai") },
+//                backgroundColor = MaterialTheme.colors.surface,
+//            )
+//        },
+//        modifier = Modifier.fillMaxSize()
+//    ) { padding ->
+//        Column(Modifier.fillMaxSize().padding(padding)) {
+//            val pagerState = rememberPagerState()
+//
+//            // Display 10 items
+//            HorizontalPager(
+//                count = 10,
+//                state = pagerState,
+//                // Add 32.dp horizontal padding to 'center' the pages
+//                contentPadding = PaddingValues(horizontal = 32.dp),
+//                modifier = Modifier
+//                    .weight(1f)
+//                    .fillMaxWidth(),
+//            ) { page ->
+//                PagerSampleItem(
+//                    page = page,
+//                    modifier = Modifier
+//                        .fillMaxWidth()
+//                        .aspectRatio(1f)
+//                )
+//            }
+//
+//            HorizontalPagerIndicator(
+//                pagerState = pagerState,
+//                modifier = Modifier
+//                    .align(Alignment.CenterHorizontally)
+//                    .padding(16.dp),
+//            )
+//
+//            ActionsRow(
+//                pagerState = pagerState,
+//                modifier = Modifier.align(Alignment.CenterHorizontally)
+//            )
+//        }
+//    }
+//}

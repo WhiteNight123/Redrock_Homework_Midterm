@@ -10,7 +10,8 @@ import com.example.linggan.logic.net.ServiceCreator
  * @date 2022/4/30
  */
 object Repository {
-    val retrofit = ServiceCreator.create(LingGanApi::class.java)
+    private val retrofit = ServiceCreator.create(LingGanApi::class.java)
 
     suspend fun getIdeaPage() = retrofit.getIdeaPage()
+    suspend fun getSpectrumList(theme_id: Int, page: Int) = retrofit.getSpectrumList(theme_id, page)
 }

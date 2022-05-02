@@ -39,3 +39,5 @@ data class SpectrumListData(val has_more: Boolean, val color_list: List<ColorDet
 }
  */
 data class SpectrumDetailData(val intro: String, val colors: ColorsData, val shades: ShadeListData)
+
+data class Query(var id: Int = -1)

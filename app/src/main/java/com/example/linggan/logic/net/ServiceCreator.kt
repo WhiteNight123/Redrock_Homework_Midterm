@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory
  * @date 2022/4/30
  */
 object ServiceCreator {
-    private const val BASE_URL = "redrock.udday.cn:8888"
+    private const val BASE_URL = "http://redrock.udday.cn:8888/"
     private val retrofit =
         Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create())
             .build()

@@ -2,6 +2,7 @@ package com.example.linggan.logic.net
 
 import com.example.linggan.logic.model.*
 import retrofit2.http.*
+import retrofit2.http.Query
 
 /**
  * ...

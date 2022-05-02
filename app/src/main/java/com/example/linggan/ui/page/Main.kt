@@ -1,6 +1,5 @@
 package com.example.linggan.ui.Nav
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.*
@@ -35,7 +34,7 @@ fun Main() {
             TopAppBar(
                 title = { Text(text = "标题") },
                 navigationIcon = {
-                    IconButton(onClick = { showToast(context,"返回") }) {
+                    IconButton(onClick = { showToast(context, "返回") }) {
                         Icon(
                             painter = painterResource(id = R.drawable.icon_arrowleft),
                             contentDescription = null,
@@ -54,12 +53,12 @@ fun Main() {
                     }
                 })
         },
-        backgroundColor = MaterialTheme.colors.primary,
+        //backgroundColor = MaterialTheme.colors.primary,
         bottomBar = {
             BottomNavigation {
                 tabs.forEach { tab ->
                     BottomNavigationItem(
-                        modifier = Modifier.background(MaterialTheme.colors.secondary),
+                        //modifier = Modifier.background(MaterialTheme.colors.secondary),
                         icon = {
                             Icon(
                                 painter = painterResource(id = tab.icon),
@@ -79,7 +78,7 @@ fun Main() {
         val modifier = Modifier.padding(innerPadding)
         when (position) {
             Tabs.SPECTRUM_PAGE -> {
-                Spectrum()
+                Spectrum(modifier)
             }
             Tabs.IDEA_PAGE -> {
                 Idea()

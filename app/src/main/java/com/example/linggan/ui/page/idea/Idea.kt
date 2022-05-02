@@ -9,6 +9,6 @@ import androidx.compose.runtime.Composable
  * @date 2022/4/30
  */
 @Composable
-fun Idea(){
+fun Idea() {
 
 }

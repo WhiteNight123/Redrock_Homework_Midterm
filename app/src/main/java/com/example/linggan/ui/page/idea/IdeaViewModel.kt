@@ -8,6 +8,6 @@ import androidx.lifecycle.ViewModel
  * @email 1448375249@qq.com
  * @date 2022/4/30
  */
-class IdeaViewModel:ViewModel() {
+class IdeaViewModel : ViewModel() {
 
 }
