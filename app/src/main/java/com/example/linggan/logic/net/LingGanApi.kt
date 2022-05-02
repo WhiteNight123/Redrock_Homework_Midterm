@@ -49,6 +49,5 @@ interface LingGanApi {
     suspend fun getStarList(
         @Header("Authorization") token: String,
         @Query("page") page: Int,
-        @Query("limit") limit: Int
-    ): BaseData<StarListData>
+    ): BaseData<StarData>
 }

@@ -53,6 +53,8 @@ android {
 
 dependencies {
 
+    implementation "androidx.compose.animation:animation:1.2.0-alpha08"
+    implementation 'com.google.code.gson:gson:2.9.0'
     implementation "com.google.accompanist:accompanist-pager-indicators:0.24.7-alpha"
     implementation "com.google.accompanist:accompanist-pager:0.24.7-alpha"
     implementation 'androidx.core:core-ktx:1.7.0'

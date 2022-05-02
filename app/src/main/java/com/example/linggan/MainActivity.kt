@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.linggan.ui.Nav.Main
+
 import com.example.linggan.ui.theme.LingGanTheme
 import dagger.hilt.android.AndroidEntryPoint
 

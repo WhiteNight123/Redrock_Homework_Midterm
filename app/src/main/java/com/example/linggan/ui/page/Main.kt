@@ -1,22 +1,19 @@
 package com.example.linggan.ui.Nav
 
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.material.*
+import androidx.compose.material.SnackbarDefaults.backgroundColor
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.linggan.LingGanApp.Companion.context
-import com.example.linggan.R
 import com.example.linggan.ui.page.MainViewModel
 import com.example.linggan.ui.page.idea.Idea
-import com.example.linggan.ui.page.spectrum.Spectrum
+import com.example.linggan.ui.page.spectrum.SpectrumNav
 import com.example.linggan.ui.page.star.Star
-import com.example.linggan.utils.showToast
 
 /**
  * ...
@@ -29,34 +26,14 @@ fun Main() {
     val viewModel: MainViewModel = hiltViewModel()
     val position by viewModel.position.observeAsState()
     val tabs = Tabs.values()
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text(text = "标题") },
-                navigationIcon = {
-                    IconButton(onClick = { showToast(context, "返回") }) {
-                        Icon(
-                            painter = painterResource(id = R.drawable.icon_arrowleft),
-                            contentDescription = null,
-                            modifier = Modifier.size(20.dp)
-                        )
+    Scaffold(backgroundColor = Color(0xFFC8DBB8),
 
-                    }
-                },
-                actions = {
-                    IconButton(onClick = { showToast(context, "搜索") }) {
-                        Icon(
-                            painter = painterResource(id = R.drawable.icon_search_48),
-                            contentDescription = null,
-                            modifier = Modifier.size(20.dp)
-                        )
-                    }
-                })
-        },
         //backgroundColor = MaterialTheme.colors.primary,
         bottomBar = {
-            BottomNavigation {
+            BottomNavigation (backgroundColor = Color(0xFFC8DBB8)){
+
                 tabs.forEach { tab ->
+
                     BottomNavigationItem(
                         //modifier = Modifier.background(MaterialTheme.colors.secondary),
                         icon = {
@@ -78,14 +55,15 @@ fun Main() {
         val modifier = Modifier.padding(innerPadding)
         when (position) {
             Tabs.SPECTRUM_PAGE -> {
-                Spectrum(modifier)
+                SpectrumNav(modifier)
             }
             Tabs.IDEA_PAGE -> {
-                Idea()
+                Idea(modifier)
             }
             Tabs.STAR_PAGE -> {
                 Star()
             }
+            else -> {}
         }
     }
 }

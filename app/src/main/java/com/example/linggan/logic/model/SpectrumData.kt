@@ -1,5 +1,7 @@
 package com.example.linggan.logic.model
 
+import androidx.compose.ui.graphics.Color
+
 /**
  * ...
  * @author WhiteNight123(Guo XiaoQiang)
@@ -38,6 +40,6 @@ data class SpectrumListData(val has_more: Boolean, val color_list: List<ColorDet
     "shades": { }
 }
  */
-data class SpectrumDetailData(val intro: String, val colors: ColorsData, val shades: ShadeListData)
+data class SpectrumDetailData(val intro: String, val colors: ColorsData, val shades: ShadeListData,var shadeList:MutableList<MutableList<Color>>)
 
 data class Query(var id: Int = -1)

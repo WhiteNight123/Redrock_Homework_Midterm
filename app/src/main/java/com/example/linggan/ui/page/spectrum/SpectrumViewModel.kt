@@ -1,15 +1,20 @@
 package com.example.linggan.ui.page.spectrum
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import com.example.linggan.logic.Repository
 import com.example.linggan.logic.model.ColorDetailData
+import com.example.linggan.logic.model.SpectrumDetailData
+import com.example.linggan.ui.lce.MyState
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flatMapLatest
@@ -30,7 +35,6 @@ class SpectrumViewModel : ViewModel() {
         spectrumResult.flatMapLatest {
             getPagingData(it)
         }.cachedIn(viewModelScope)
-    private var searchJob: Job? = null
 
     fun getSpectrumList(id: Int) {
         Log.e("TAG", "getSpectrumListffff: $id")
@@ -38,7 +42,6 @@ class SpectrumViewModel : ViewModel() {
             spectrumResult.emit(id)
         }
     }
-
 
     private fun getPagingData(id: Int) = Pager(
         PagingConfig(
@@ -49,5 +52,14 @@ class SpectrumViewModel : ViewModel() {
         SpectrumPagingSource(id)
     }.flow
 
+    private val _spectrumDetailState = MutableLiveData<MyState<SpectrumDetailData>>()
+    val spectrumDetailState: LiveData<MyState<SpectrumDetailData>>
+        get() = _spectrumDetailState
+
+    fun getSpectrumDetail(id: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            Repository.getSpectrumDetail(_spectrumDetailState, id)
+        }
+    }
 
 }
