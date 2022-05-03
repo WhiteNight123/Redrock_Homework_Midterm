@@ -25,6 +25,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavType
@@ -37,6 +39,7 @@ import androidx.paging.compose.itemsIndexed
 import com.example.linggan.LingGanApp
 import com.example.linggan.LingGanApp.Companion.context
 import com.example.linggan.R
+import com.example.linggan.dataStore
 import com.example.linggan.logic.model.ColorDetailData
 import com.example.linggan.logic.model.SpectrumDetailData
 import com.example.linggan.ui.Nav.LingGanDestination
@@ -138,6 +141,11 @@ fun Spectrum(
                 snapshotFlow { pagerState.currentPage }.collect { page ->
                     Log.e("TESE", "Spectrum: $page+1")
                     viewModel.getSpectrumList(page + 1)
+                }
+                val token = stringPreferencesKey("login_token")
+                context.dataStore.edit { settings ->
+                    val text = settings[token]
+                    Log.e("TAG", "Login: $text")
                 }
             }
             HorizontalPager(
@@ -502,7 +510,10 @@ fun SpectrumDetail(
                 ) {
                     Column() {
                         val color2 = colors.color_2
-                        Canvas(modifier = Modifier.size(100.dp, 50.dp)) {
+                        Canvas(
+                            modifier = Modifier
+                                .size(100.dp, 50.dp)
+                                .clickable { navController.navigate("${LingGanDestination.SPECTRUM_DETAIL_ROUTE}/${color2.id}") }) {
 
                             drawRect(
                                 color = Color(color2.r, color2.g, color2.b),
@@ -523,7 +534,10 @@ fun SpectrumDetail(
                     Column() {
                         val color3 = colors.color_3
 
-                        Canvas(modifier = Modifier.size(100.dp, 50.dp)) {
+                        Canvas(
+                            modifier = Modifier
+                                .size(100.dp, 50.dp)
+                                .clickable { navController.navigate("${LingGanDestination.SPECTRUM_DETAIL_ROUTE}/${color3.id}") }) {
                             drawRect(
                                 color = Color(color3.r, color3.g, color3.b),
                                 size = Size(175f, 90f),
@@ -542,7 +556,10 @@ fun SpectrumDetail(
                     Column() {
                         val color4 = colors.color_4
 
-                        Canvas(modifier = Modifier.size(100.dp, 50.dp)) {
+                        Canvas(
+                            modifier = Modifier
+                                .size(100.dp, 50.dp)
+                                .clickable { navController.navigate("${LingGanDestination.SPECTRUM_DETAIL_ROUTE}/${color4.id}") }) {
                             drawRect(
                                 color = Color(color4.r, color4.g, color4.b),
                                 size = Size(175f, 90f),
@@ -566,7 +583,10 @@ fun SpectrumDetail(
                     Column() {
                         val color5 = colors.color_5
 
-                        Canvas(modifier = Modifier.size(100.dp, 50.dp)) {
+                        Canvas(
+                            modifier = Modifier
+                                .size(100.dp, 50.dp)
+                                .clickable { navController.navigate("${LingGanDestination.SPECTRUM_DETAIL_ROUTE}/${color5.id}") }) {
                             drawRect(
                                 color = Color(color5.r, color5.g, color5.b),
                                 size = Size(175f, 90f),
@@ -585,7 +605,10 @@ fun SpectrumDetail(
                     Column() {
                         val color6 = colors.color_6
 
-                        Canvas(modifier = Modifier.size(100.dp, 50.dp)) {
+                        Canvas(
+                            modifier = Modifier
+                                .size(100.dp, 50.dp)
+                                .clickable { navController.navigate("${LingGanDestination.SPECTRUM_DETAIL_ROUTE}/${color6.id}") }) {
                             drawRect(
                                 color = Color(color6.r, color6.g, color6.b),
                                 size = Size(175f, 90f),
@@ -604,7 +627,10 @@ fun SpectrumDetail(
                     Column() {
                         val color7 = colors.color_7
 
-                        Canvas(modifier = Modifier.size(100.dp, 50.dp)) {
+                        Canvas(
+                            modifier = Modifier
+                                .size(100.dp, 50.dp)
+                                .clickable { navController.navigate("${LingGanDestination.SPECTRUM_DETAIL_ROUTE}/${color7.id}") }) {
                             drawRect(
                                 color = Color(color7.r, color7.g, color7.b),
                                 size = Size(175f, 90f),
@@ -643,19 +669,51 @@ fun SpectrumShade(color: List<Color>, navController: NavController, modifier: Mo
             sheetShape = RoundedCornerShape(10),
             sheetState = modalBottomSheetState,
             sheetContent = {
-                Row(modifier.padding(8.dp)) {
-                    Image(
-                        painter = painterResource(R.drawable.icon_qq),
-                        contentDescription = null,
-                        modifier = Modifier
-                            .size(48.dp)
-                            .clickable { })
-                    Image(
-                        painter = painterResource(R.drawable.icon_wechat),
-                        contentDescription = null,
-                        modifier = Modifier
-                            .size(48.dp).offset(8.dp)
-                            .clickable { showToast(context,"暂不支持微信分享")})
+                Row(
+                    modifier
+                        .fillMaxWidth()
+                        .padding(8.dp)
+                ) {
+                    Column(Modifier.size(72.dp)) {
+                        Image(
+                            painter = painterResource(R.drawable.icon_qq),
+                            contentDescription = null,
+                            modifier = Modifier
+                                .size(48.dp)
+                                .clickable { })
+                        Text(text = "qq好友")
+                    }
+                    Column(Modifier.size(72.dp)) {
+                        Image(
+                            painter = painterResource(R.drawable.icon_wechat),
+                            contentDescription = null,
+                            modifier = Modifier
+                                .size(48.dp)
+                                .offset(8.dp)
+                                .clickable { showToast(LingGanApp.context, "暂不支持微信分享") })
+                        Text("微信好友")
+                    }
+                    Column(Modifier.size(72.dp)) {
+                        Image(
+                            painter = painterResource(R.drawable.icon_download),
+                            contentDescription = null,
+                            modifier = Modifier
+                                .size(48.dp)
+                                .offset(8.dp)
+                                .clickable { showToast(LingGanApp.context, "暂不支持保存图片") })
+                        Text("保存图片")
+                    }
+                    Column(Modifier.size(72.dp)) {
+                        Image(
+                            painter = painterResource(R.drawable.icon_link),
+                            contentDescription = null,
+                            modifier = Modifier
+                                .size(48.dp)
+                                .offset(8.dp)
+                                .clickable { showToast(LingGanApp.context, "暂不支持复制链接") })
+                        Text("复制链接")
+                    }
+
                 }
             },
         ) {
@@ -695,7 +753,7 @@ fun SpectrumShade(color: List<Color>, navController: NavController, modifier: Mo
                     .clickable {
                         modalBottomSheetScope.launch {
                             modalBottomSheetState.show()
-                            showToast(context, "分享")
+
                         }
                     },
                 contentDescription = null

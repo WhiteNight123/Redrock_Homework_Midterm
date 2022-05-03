@@ -19,7 +19,9 @@ import com.example.linggan.ui.lce.MySuccess
 object Repository {
     private val retrofit = ServiceCreator.create(LingGanApi::class.java)
 
-    suspend fun getHeroList(token: String, page: Int) = retrofit.getStarList(token, page)
+    suspend fun getStarList(token: String, page: Int) = retrofit.getStarList(token, page)
+    suspend fun deleteStar(token: String, id: Int) = retrofit.unStar(token, id)
+    suspend fun login(phone: String) = retrofit.login(phone)
     suspend fun getSpectrumList(theme_id: Int, page: Int) = retrofit.getSpectrumList(theme_id, page)
     suspend fun getSpectrumDetail(state: MutableLiveData<MyState<SpectrumDetailData>>, id: Int) {
         val response = retrofit.getSpectrumDetail(id)

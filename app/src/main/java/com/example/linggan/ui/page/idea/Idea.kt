@@ -1,15 +1,11 @@
 package com.example.linggan.ui.page.idea
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.launch
 
 /**
@@ -25,7 +21,8 @@ fun Idea(modifier: Modifier) {
         initialValue = ModalBottomSheetValue.Hidden
     )
     val modalBottomSheetScope = rememberCoroutineScope()
-    ModalBottomSheetLayout(modifier=modifier,
+    ModalBottomSheetLayout(
+        modifier = modifier,
         sheetState = modalBottomSheetState,
         sheetContent = {
             Column() {
@@ -41,7 +38,7 @@ fun Idea(modifier: Modifier) {
         },
     ) {
     }
-    LaunchedEffect(modalBottomSheetState){
+    LaunchedEffect(modalBottomSheetState) {
         modalBottomSheetScope.launch {
             modalBottomSheetState.show()
         }

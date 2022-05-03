@@ -16,7 +16,7 @@ class StarPagingSource(private val token: String) :
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, StarListData> {
         return try {
             val nextPage = params.key ?: 1
-            val response = Repository.getHeroList(token, nextPage)
+            val response = Repository.getStarList(token, nextPage)
 
             LoadResult.Page(
                 data = response.data.star_list,

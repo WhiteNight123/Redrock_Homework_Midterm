@@ -3,6 +3,7 @@ package com.example.linggan.logic.net
 import com.example.linggan.logic.model.*
 import retrofit2.http.*
 import retrofit2.http.Query
+import java.util.*
 
 /**
  * ...
@@ -33,17 +34,19 @@ interface LingGanApi {
     @POST("user/register")
     suspend fun register(@Body data: RegisterBody): BaseData<String>
 
-    @POST("user/login")
-    suspend fun login(@Body data: LoginBody): BaseData<LoginData>
+    @FormUrlEncoded
+    @POST("user/long_login")
+    suspend fun login(@Field("phone_number") phone: String): BaseData<LoginData>
 
     @POST("star/star")
     suspend fun star(@Header("Authorization") token: String, @Body data: StarBody): BaseData<String>
 
+    @FormUrlEncoded
     @POST("star/delete_star")
     suspend fun unStar(
         @Header("Authorization") token: String,
-        @Body data: UnStarBody
-    ): BaseData<String>
+        @Field("star_id") id: Int
+    ): BaseData<Objects>
 
     @GET("star/star_list")
     suspend fun getStarList(

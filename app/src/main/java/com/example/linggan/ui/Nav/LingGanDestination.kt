@@ -7,7 +7,7 @@ package com.example.linggan.ui.Nav
  * @date 2022/5/2
  */
 object LingGanDestination {
-
+    var TOKEN = ""
     const val SPECTRUM_ROUTE = "spectrum_route"
     const val HOME_ROUTE = "home_route"
     const val SPECTRUM_SHADE_ROUTE = "spectrum_shade_route"

@@ -14,6 +14,6 @@ enum class Tabs(
     @DrawableRes val icon: Int
 ) {
     SPECTRUM_PAGE("色谱", R.drawable.icon_colorpalette),
-    IDEA_PAGE("灵感", R.drawable.icon_lamp),
-    STAR_PAGE("收藏", R.drawable.icon_heart_96)
+    STAR_PAGE("收藏", R.drawable.icon_heart_96),
+    IDEA_PAGE("登录", R.drawable.icon_lamp),
 }

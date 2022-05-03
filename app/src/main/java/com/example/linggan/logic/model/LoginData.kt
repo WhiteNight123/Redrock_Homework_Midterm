@@ -13,7 +13,7 @@ package com.example.linggan.logic.model
     "refreshToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBdXRoZW50aWNhdGlvbiIsImlzcyI6IlJFRFJPQ0siLCJleHAiOjE2NTM4ODQ1NTAsImlhdCI6MTY1MTI5MjU1MCwidXNlcklEIjoyfQ.3q3lqn9uPEQtzUd_AaFv7ToNnIJNGVZDKoPh-7Q3zuE224SH95vQlP56rOkW665VEFUs2bp7EK167HhETflEtg"
 }
  */
-data class LoginData(val token: String, val refreshToken: String)
+data class LoginData(val token: String)
 
 data class LoginBody(val phone_number: Int)
 

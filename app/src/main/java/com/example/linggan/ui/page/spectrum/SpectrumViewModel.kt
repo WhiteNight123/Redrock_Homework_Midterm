@@ -1,6 +1,5 @@
 package com.example.linggan.ui.page.spectrum
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -37,7 +36,7 @@ class SpectrumViewModel : ViewModel() {
         }.cachedIn(viewModelScope)
 
     fun getSpectrumList(id: Int) {
-        Log.e("TAG", "getSpectrumListffff: $id")
+
         viewModelScope.launch {
             spectrumResult.emit(id)
         }
